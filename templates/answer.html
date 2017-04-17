@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика по котикам и собачкам</title>
+    <script>
+        window.onbeforeunload = function() {
+          return "Warning";
+        };
+    </script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<h2><font color="white"> Привет, {{ name }}! <br> Вот статистика по котам и собакам: </font></h2>
+<p><font color="white">За котиков: {{ len_cats }}</font></p>
+<p><font color="white"> За собачек: {{ len_dogs }}</font></p>
+<br>
+<h3> <font color="white"> А вот статистика по именам: </font></h3>
+{%  for name, value in people.items() %}
+<p> <font color="white"> {{ name }}: {{ value }}</font></p>
+{% endfor %}
+
+</body>
+</html>

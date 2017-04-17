@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Части речи слов</title>
+    <style>
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <form method='post'>
+        <h1>Ваш текст:</h1>
+        <textarea rows="4" cols="50" name="text">{{ input }}</textarea>
+        <br>
+        <input type="submit" value="Разобрать">
+    </form>
+
+    {% if text %}
+        <h1>Разбор:</h1>
+    <h2>Переходность:</h2>
+    {% for name, number in dict_trans.items() %}
+        {{ name }} - {{ number }}
+    <br>
+    {% endfor %}
+    <h2>Вид</h2>
+  {% for name, number in dict_vid.items() %}
+        {{ name }} - {{ number }}
+<br>
+    {% endfor %}
+    <h2>Количество глаголов в тексте</h2>
+    {{ verbs }}
+    {% endif %}
+<h2>Леммы, отсортированные по частоте:</h2>
+  {% for name in freqs %}
+        {{ name[0]}} - {{name[1]}}
+<br>
+    {% endfor %}
+</body>
+</html>

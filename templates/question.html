@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link class="blur" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<form>
+    <font color="white" size="6">
+    <label>Имя: <input type="text" name="name"> </label><br>
+    <p>Кого вы любите больше: кошек или собак?</p>
+    <label> <input type="radio" name="cats">Котики</label><br>
+    <label> <input type="radio" name="dogs">Собачки</label><br>
+    <input type="submit" value="Отправить">
+    </font>
+</form>
+</body>
+</html>
