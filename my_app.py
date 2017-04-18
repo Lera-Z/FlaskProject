@@ -22,26 +22,19 @@ def add_POS(text):
     verbs = 0
     for i in ana:
         if i['text'].strip() and 'analysis' in i and i['analysis']:
-            if 'несов' in i['analysis'][0]['gr']:
-                vid_dict['несовершенный'] += 1
-            elif 'сов' in i['analysis'][0]['gr']:
-                vid_dict['совершенный'] += 1
-            if 'пе' in i['analysis'][0]['gr']:
-                trans_dict['переходный'] += 1
-            elif 'не' in i['analysis'][0]['gr']:
-                trans_dict['непереходный'] += 1
-
-            # pos = i['analysis'][0]['gr'].split('=')[0].split(',')[0]
-            # if i['analysis'][0]['gr'].split(',')[2].split('=')[0]:
-            #     if
-            #     sov = i['analysis'][0]['gr'].split(',')[2].split('=')[0]
-            # else:
-            #     sov = i['analysis']
-            # trans = i['analysis'][0]['gr'].split(',')[1].split('=')[0]
             if 'V,' in i['analysis'][0]['gr']:
                 verbs+=1
                 lemma = i['analysis'][0]['lex']
                 freq_lemmas[lemma] += 1
+                if 'несов' in i['analysis'][0]['gr']:
+                    vid_dict['несовершенный'] += 1
+                elif 'сов' in i['analysis'][0]['gr']:
+                    vid_dict['совершенный'] += 1
+                if 'пе' in i['analysis'][0]['gr']:
+                    trans_dict['переходный'] += 1
+                elif 'не' in i['analysis'][0]['gr']:
+                    trans_dict['непереходный'] += 1
+
     return vid_dict, trans_dict, verbs, freq_lemmas
 
 @app.route('/', methods=['get', 'post'])
