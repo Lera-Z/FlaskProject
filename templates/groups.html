@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/images/fox.ico" type="image/ico" sizes="32x32">
+    <title>Группы ВК</title>
+</head>
+<body>
+<link rel="stylesheet" href="/static/css/style.css">
+    <form method='post'>
+        <h1>Введите два id групп ВК:</h1>
+        <input name="id1"/>
+        <br>
+        <input name="id2"/>
+        <br>
+        <input type="submit" value="Отправить">
+    </form>
+{% if after_post %}
+    {% if error_1 %}
+        <p>Группы {{ id1 }} не существует, пожалуйста, введите id заново</p>
+    {% endif %}
+    {% if error_2 %}
+        <p>Группы {{ id2 }} не существует, пожалуйста, введите id заново</p>
+    {% endif %}
+    {% if not error_1 and not error_2 %}
+        <p>Количество участников группы {{ id1 }}: {{ count1 }} </p>
+        {% if closed_1 %}
+            <p>Группа {{ id1 }} закрытая</p>
+        {% endif %}
+        <p>Количество участников группы {{ id2 }}: {{ count2 }}</p>
+        {% if closed_2 %}
+            <p>Группа {{ id2 }} закрытая</p>
+        {% endif %}
+        <p>ID участников обеих групп:</p>
+        <p>{{ intersect }}</p>
+    {% endif %}
+{% endif %}
+</body>
+</html>

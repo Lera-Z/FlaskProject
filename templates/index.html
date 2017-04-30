@@ -1,39 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
+    <link rel="icon" href="/static/images/fox.ico" type="image/ico" sizes="32x32">
     <meta charset="UTF-8">
-    <title>Части речи слов</title>
-    <style>
-    </style>
+    <title>Полезный сайт</title>
 </head>
 <body>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <form method='post'>
-        <h1>Ваш текст:</h1>
-        <textarea rows="4" cols="50" name="text">{{ input }}</textarea>
-        <br>
-        <input type="submit" value="Разобрать">
-    </form>
+<a href="https://github.com/Lera-Z"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+<link rel="stylesheet" href="/static/css/style.css">
+<h2>На этом сайте можно сделать следующее:</h2>
+<ul>
+    <li><a href="/pos">Получить разбор текста по частям речи</a></li>
+    <li><a href="/groups">Ввести адреса двух открытых групп Вконтакте и получить количество подписчиков каждой группы и тех, кто подписан на обе группы</a></li>
 
-    {% if text %}
-        <h1>Разбор:</h1>
-    <h2>Переходность:</h2>
-    {% for name, number in dict_trans.items() %}
-        {{ name }} - {{ number }}
-    <br>
-    {% endfor %}
-    <h2>Вид</h2>
-  {% for name, number in dict_vid.items() %}
-        {{ name }} - {{ number }}
-<br>
-    {% endfor %}
-    <h2>Количество глаголов в тексте</h2>
-    {{ verbs }}
-    <h2>Леммы, отсортированные по частоте:</h2>
-  {% for name in freqs %}
-        {{ name[0]}} - {{name[1]}}
-<br>
-    {% endfor %}
-{% endif %}
+</ul>
+<p>Исходный код этого сайта находится <a href="https://github.com/Lera-Z/FlaskProject">здесь</a> </p>
+<p>Автор этого сайта - Зеленкова Лера</p>
 </body>
 </html>

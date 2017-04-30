@@ -9,7 +9,7 @@ from collections import defaultdict
 from flask import Flask
 from flask import url_for, render_template, request, redirect
 from pymystem3 import Mystem
-
+from vk_groups import get_groups
 m = Mystem()
 app = Flask(__name__)
 
@@ -37,15 +37,30 @@ def add_POS(text):
 
     return vid_dict, trans_dict, verbs, freq_lemmas
 
-@app.route('/', methods=['get', 'post'])
-def index():
+@app.route('/pos', methods=['get', 'post'])
+def pos():
     if request.form:
         text = request.form['text']
         result = add_POS(text)
-        return render_template('index.html', input=text, text=result, dict_vid = result[0], dict_trans = result[1], verbs=result[2], freqs =
+        return render_template('pos.html', input=text, text=result, dict_vid = result[0], dict_trans = result[1],
+                               verbs=result[2], freqs =
                             sorted(result[3].items(),key=operator.itemgetter(1), reverse = True))
+    return render_template('pos.html')
+
+@app.route('/')
+def index():
     return render_template('index.html')
 
+@app.route('/groups', methods=['get', 'post'])
+def groups():
+    if request.form:
+        id1 = request.form['id1']
+        id2 = request.form['id2']
+        count1, count2, intersect, closed_1, closed_2, error_1, error_2 = get_groups(id1, id2)
+        return render_template('groups.html', count1=count1, count2=count2,
+                               intersect=', '.join([str(x) for x in intersect]), id1=id1, id2=id2,
+                               after_post=True, closed_1=closed_1, closed_2=closed_2, error_1=error_1, error_2=error_2)
+    return render_template('groups.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
