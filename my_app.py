@@ -43,9 +43,10 @@ def pos():
         text = request.form['text']
         result = add_POS(text)
         return render_template('pos.html', input=text, text=result, dict_vid = result[0], dict_trans = result[1],
-                               verbs=result[2], freqs =
-                            sorted(result[3].items(),key=operator.itemgetter(1), reverse = True))
-    return render_template('pos.html')
+                               verbs=result[2],
+                               freqs=sorted(result[3].items(),key=operator.itemgetter(1), reverse = True),
+                               data=result[3])
+    return render_template('pos.html', data=defaultdict(int))
 
 @app.route('/')
 def index():
@@ -58,9 +59,10 @@ def groups():
         id2 = request.form['id2']
         count1, count2, intersect, closed_1, closed_2, error_1, error_2 = get_groups(id1, id2)
         return render_template('groups.html', count1=count1, count2=count2,
+                               data={id1: count1, id2: count2},
                                intersect=', '.join([str(x) for x in intersect]), id1=id1, id2=id2,
                                after_post=True, closed_1=closed_1, closed_2=closed_2, error_1=error_1, error_2=error_2)
-    return render_template('groups.html')
+    return render_template('groups.html', data=defaultdict(int))
 
 if __name__ == '__main__':
     app.run(debug=True)
