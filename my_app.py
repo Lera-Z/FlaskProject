@@ -10,6 +10,7 @@ from flask import Flask
 from flask import url_for, render_template, request, redirect
 from pymystem3 import Mystem
 from vk_groups import get_groups
+from ocr import printed_text, find_dict, find_list, handwritten_text
 m = Mystem()
 app = Flask(__name__)
 
@@ -63,6 +64,21 @@ def groups():
                                intersect=', '.join([str(x) for x in intersect]), id1=id1, id2=id2,
                                after_post=True, closed_1=closed_1, closed_2=closed_2, error_1=error_1, error_2=error_2)
     return render_template('groups.html', data=defaultdict(int))
+
+@app.route('/ocr', methods=['get', 'post'])
+def ocr_me():
+    if request.form:
+        url_of_pic = request.form['url']
+
+        if request.form['option'] == 'printed':
+            result = printed_text(url_of_pic)
+            return render_template('ocr.html', url_of_pic = url_of_pic, result = result, after_post = True)
+
+        elif request.form['option'] == 'written':
+            result = handwritten_text(url_of_pic)
+            return render_template('ocr.html', url_of_pic=url_of_pic, result=result, after_post=True)
+
+    return render_template('ocr.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

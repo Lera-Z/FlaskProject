@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="icon" href="/static/images/fox.ico" type="image/ico" sizes="32x32">
+    <title>Распознаватель текста с картинки</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <form method='post'>
+        <h1>Введите полный URL картинки:</h1>
+        <input name="url"/>
+        <br>
+   <p><b>Какой текст на картинке?</b></p>
+   <p><input type="radio" name="option" value="written">рукописный<Br>
+   <input type="radio" name="option" value="printed" checked>печатный<Br>
+   <p><input type="submit" value="Отправить"></p>
+  </form>
+{% if after_post %}
+    <p>{{ result }}</p>
+    <img src='{{ url_of_pic }}' style="max-height: 150px">
+{% endif %}
+
+</body>
+</html>
