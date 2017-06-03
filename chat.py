@@ -20,7 +20,7 @@ def get_answer(message):
             sent_tags.append(i)
 
     for tag_w in sent_tags:
-        if type(tag_w) == pymorphy2.tagset.OpencorporaTag:
+        if isinstance(tag_w, pymorphy2.tagset.OpencorporaTag):
             flag = 0
             while flag == 0:
                 word = random.choice(all_words)
