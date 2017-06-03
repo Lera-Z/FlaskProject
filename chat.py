@@ -3,7 +3,7 @@ import re, pandas, random
 from nltk.tokenize import word_tokenize
 
 morph = pymorphy2.MorphAnalyzer()
-wordlist = pandas.read_csv('1grams-3.csv', delimiter = '\t')
+wordlist = pandas.read_csv('/home/LeraZ/FlaskProject/data.csv', delimiter = '\t')
 
 all_words = list(wordlist['и'])
 
