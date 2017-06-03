@@ -11,6 +11,8 @@ from flask import url_for, render_template, request, redirect
 from pymystem3 import Mystem
 from vk_groups import get_groups
 from ocr import printed_text, find_dict, find_list, handwritten_text
+from chat import get_answer
+
 m = Mystem()
 app = Flask(__name__)
 
@@ -79,6 +81,16 @@ def ocr_me():
             return render_template('ocr.html', url_of_pic=url_of_pic, result=result, after_post=True)
 
     return render_template('ocr.html')
+
+
+@app.route('/chat', methods=['get', 'post'])
+def lets_chat():
+    if request.form:
+        message = request.form['mess']
+        answer = get_answer(message)
+        return render_template('chat.html', answer = answer, after_post = True)
+
+    return render_template('chat.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

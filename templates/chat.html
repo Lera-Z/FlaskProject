@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат</title>
+    <link rel="icon" href="/static/images/fox.ico" type="image/ico" sizes="32x32">
+
+</head>
+<body>
+<link rel="stylesheet" href="/static/css/style.css">
+    <form method='post'>
+        <h1>Введите предложение:</h1>
+        <input name="mess"/>
+        <br>
+        <p><input type="submit" value="Отправить"></p>
+   </form>
+
+{% if after_post %}
+    <p>{{ answer }}</p>
+{% endif %}
+
+</body>
+</html>
