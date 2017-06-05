@@ -27,9 +27,10 @@
         chart.draw(data, options);
       }
     </script>
+    <link rel="stylesheet" href="/static/css/style.css">
+
 </head>
 <body>
-<link rel="stylesheet" href="/static/css/style.css">
     <form method='post'>
         <h1>Введите два id групп ВК:</h1>
         <input name="id1"/>
@@ -48,6 +49,7 @@
     {% endif %}
     {% if not error_1 and not error_2 %}
         <div id="chart_div"></div>
+<div class="text">
         <p>Количество участников группы {{ id1 }}: {{ count1 }} </p>
         {% if closed_1 %}
             <p>Группа {{ id1 }} закрытая</p>
@@ -58,6 +60,7 @@
         {% endif %}
         <p>ID участников обеих групп:</p>
         <p>{{ intersect }}</p>
+</div>
     {% endif %}
 {% endif %}
 </body>

@@ -30,7 +30,8 @@ def get_groups(group1, group2):
         is_closed_2 = d_2_info['response'][0]['is_closed']
         d_2 = json.loads(response_2.text)
         count_2 = d_2['response']['count']
-        intersect = list(set(d_2['response']['users']) & set(d_2['response']['users']))
+
+        intersect = list(set(d_1['response']['users']) & set(d_2['response']['users']))
 
     return count_1, count_2, intersect, is_closed_1, is_closed_2, error_1, error_2
 
