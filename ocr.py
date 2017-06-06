@@ -5,7 +5,7 @@ import json
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 
 
-_url = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/describe'
+_url = 'https://westus.api.cognitive.microsoft.com/vision/v1.0/describe'
 _key = '6f487d230e484a1ea926d569682fa8f7'
 _maxNumRetries = 10
 
