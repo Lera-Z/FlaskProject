@@ -1,10 +1,16 @@
 import pymorphy2
 import re, pandas, random
 from nltk.tokenize import word_tokenize
+import os
 
 morph = pymorphy2.MorphAnalyzer()
+fname = '/home/LeraZ/FlaskProject/data.csv'
+
+if '/Users/Valeriya' in os.getcwd():
+    fname = '/Users/Valeriya/Documents/Py/FlaskProject/data.csv'
+
 # wordlist = pandas.read_csv('/home/LeraZ/FlaskProject/data.csv', delimiter = '\t')
-wordlist = pandas.read_csv('/Users/Valeriya/Documents/Py/FlaskProject/1grams-3.csv', delimiter = '\t')
+wordlist = pandas.read_csv(fname, delimiter = '\t')
 
 all_words = list(wordlist['и'])
 
