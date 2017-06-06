@@ -32,12 +32,13 @@ def get_groups(group1, group2):
         count_2 = d_2['response']['count']
 
         intersect = list(set(d_1['response']['users']) & set(d_2['response']['users']))
+        len_intersect = len(intersect)
 
-    return count_1, count_2, intersect, is_closed_1, is_closed_2, error_1, error_2
+    return count_1, count_2, intersect, is_closed_1, is_closed_2, error_1, error_2, len_intersect
 
 
 def main():
-    count1, count2, intersect, is_closed_1, is_closed_2, error_1, error_2 = get_groups(
+    count1, count2, intersect, is_closed_1, is_closed_2, error_1, error_2, len_intersect = get_groups(
         'притотвры',
         'pikabu'
     )

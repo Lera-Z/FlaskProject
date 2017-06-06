@@ -18,6 +18,7 @@ app = Flask(__name__)
 
 
 def add_POS(text):
+    len_text = len(text.split())
     trans_dict = defaultdict(int)
     vid_dict = defaultdict(int)
     freq_lemmas = defaultdict(int)
@@ -38,7 +39,8 @@ def add_POS(text):
                 elif 'не' in i['analysis'][0]['gr']:
                     trans_dict['непереходный'] += 1
 
-    return vid_dict, trans_dict, verbs, freq_lemmas
+    verbs_in_text = verbs/len_text
+    return vid_dict, trans_dict, verbs, freq_lemmas, verbs_in_text
 
 @app.route('/pos', methods=['get', 'post'])
 def pos():
@@ -46,7 +48,7 @@ def pos():
         text = request.form['text']
         result = add_POS(text)
         return render_template('pos.html', input=text, text=result, dict_vid = result[0], dict_trans = result[1],
-                               verbs=result[2],
+                               verbs=result[2], verbs_in_text = result[4],
                                freqs=sorted(result[3].items(),key=operator.itemgetter(1), reverse = True),
                                data=result[3])
     return render_template('pos.html', data=defaultdict(int))
@@ -60,11 +62,12 @@ def groups():
     if request.form:
         id1 = request.form['id1']
         id2 = request.form['id2']
-        count1, count2, intersect, closed_1, closed_2, error_1, error_2 = get_groups(id1, id2)
+        count1, count2, intersect, closed_1, closed_2, error_1, error_2, len_intersect = get_groups(id1, id2)
         return render_template('groups.html', count1=count1, count2=count2,
                                data={id1: count1, id2: count2},
                                intersect=', '.join([str(x) for x in intersect]), id1=id1, id2=id2,
-                               after_post=True, closed_1=closed_1, closed_2=closed_2, error_1=error_1, error_2=error_2)
+                               after_post=True, closed_1=closed_1, closed_2=closed_2, error_1=error_1, error_2=error_2,
+                               len_intersect=len_intersect)
     return render_template('groups.html', data=defaultdict(int))
 
 @app.route('/ocr', methods=['get', 'post'])
